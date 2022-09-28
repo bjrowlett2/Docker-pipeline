@@ -1,0 +1,21 @@
+Tasks:
+- Image: docker.io/busybox:latest
+  Command:
+  - /bin/sh
+  - -c
+  - echo "Hello, Sailor!" > /task/artifacts/hello.txt
+  VolumeMounts:
+  - Name: Artifacts
+    ContainerPath: /task/artifacts
+- Image: docker.io/busybox:latest
+  Command:
+  - /bin/sh
+  - -c
+  - echo "Goodbye, World!" >> /task/artifacts/hello.txt
+  VolumeMounts:
+  - Name: Artifacts
+    ContainerPath: /task/artifacts
+
+Volumes:
+- Name: Artifacts
+  HostPath: run_tree/artifacts
